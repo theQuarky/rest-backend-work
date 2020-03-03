@@ -15,6 +15,7 @@ export const sendToken = (req: IRequest, res: IResponse, next: express.NextFunct
     console.log("Token: "+req.token);
     return res.json({
         token: req.token,
+        data: req.data,
         error: req.error
     });
 }

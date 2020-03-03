@@ -149,6 +149,7 @@ export const makeUserLogin: express.RequestHandler = async (req: IRequest, res: 
         const user: IUser = await usersModel.findOne({ email: params.email });
         if (bcrypt.compareSync(params.password, user.password)) {
             req.token = jwt.sign(JSON.stringify(user), CONFIG.JWT_ENCRYPTION);
+            req.data = user;
         }
         return next();
     } catch (error) {
